@@ -51,11 +51,42 @@ $ curl http://127.0.0.1:8232 --user zcluser:[RPCpassword] --data-binary '{"id": 
 
 1. RPC call failed
 
+![invalid port](https://user-images.githubusercontent.com/4344115/35867293-47fee076-0b0e-11e8-854a-2156b57175d5.png)
 ```
 2018-02-03 17:10:26 [Pool]	[zclassic] (Thread 2) Could not start pool, error with init batch RPC call: {"type":"offline","message":"connect ECONNREFUSED 127.0.0.1:8023"}
 ```
 
-This error caused by incorrect port was configured. Daemon port number in pool_configs/zclassic.json should match .zclassic/zclassic.conf.
+This error caused by incorrect RPC port was configured in pool_configs/zclassic.json. Find out the correct RPC port in your zclassic.conf file (begin with "rpcport=") then fix port number in pool_configs/zclassic.json under payment processing:
+
+```json
+    "paymentProcessing": {
+    "minConf": 10,
+        "enabled": true,
+        "paymentMode": "prop",
+        "_comment_paymentMode":"prop, pplnt",
+        "paymentInterval": 15,
+        "minimumPayment": 0,
+        "maxBlocksPerPayment": 1000,
+        "daemon": {
+            "host": "127.0.0.1",
+            "port": 8232,
+            "user": "zcluser",
+            "password": "EuStKJZe"
+        }
+    },
+```
+
+and also change port number under daemons section:
+```json
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 8232,
+            "user": "zcluser",
+            "password": "EuStKJZe"
+        }
+    ],
+```
 
 2. Invalid address
 
