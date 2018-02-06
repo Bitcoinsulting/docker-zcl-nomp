@@ -28,5 +28,5 @@ RUN chown zcluser:zcluser /home/zcluser/zclassic
 RUN chmod +x /home/zcluser/run_zclassic_node.sh
 
 COPY z-nomp-config.json /home/zcluser/config.json
-COPY zclassic.json /home/zcluser/zclassic.json
+COPY zclassic.json /home/zcluser/zclassic-template.json
 COPY run_zcl_nomp.sh /home/zcluser/run_zcl_nomp.sh
