@@ -12,8 +12,6 @@ RUN /home/zcluser/zclassic/zcutil/build.sh
 
 # Get zclassic.conf
 RUN mkdir /home/zcluser/.zclassic /home/zcluser/database
-#RUN ln -s /home/zcluser/database /home/zcluser/.zclassic/database
-RUN wget -q https://github.com/z-classic/zclassic/releases/download/Config/zclassic.conf -O /home/zcluser/.zclassic/zclassic.conf
 
 # Fetch Z parameters
 USER zcluser
@@ -26,5 +24,9 @@ RUN npm install n -g && n stable
 
 COPY run_zclassic_node.sh /home/zcluser/run_zclassic_node.sh
 RUN chown zcluser:zcluser /home/zcluser/.zclassic/ /home/zcluser/run_zclassic_node.sh
-RUN chown zcluser:zcluser /home/zcluser/.zclassic/zclassic.conf /home/zcluser/zclassic
+RUN chown zcluser:zcluser /home/zcluser/zclassic
 RUN chmod +x /home/zcluser/run_zclassic_node.sh
+
+COPY z-nomp-config.json /home/zcluser/config.json
+COPY zclassic.json /home/zcluser/zclassic.json
+COPY run_zcl_nomp.sh /home/zcluser/run_zcl_nomp.sh
