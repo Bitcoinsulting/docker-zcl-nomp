@@ -14,8 +14,8 @@ You can either pull from [Docker Hub](https://hub.docker.com/r/rwicaksono/docker
 #### Pull from Dockerhub
 
 ```
-$ docker pull rizkiwicaksono/docker-zcl-nomp
-$ docker tag rizkiwicaksono/docker-zcl-nomp btcp/z-nomp
+$ docker pull rwicaksono/docker-zcl-nomp
+$ docker tag rwicaksono/docker-zcl-nomp btcp/z-nomp
 ```
 
 ### Build docker image
