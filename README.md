@@ -7,7 +7,18 @@ This is a docker image to run complete [Zclassic mining pool](https://github.com
 * Redis
 * LevelDB
 
-## Building Docker
+## Getting Docker Image
+
+You can either pull from [Docker Hub](https://hub.docker.com/r/rwicaksono/docker-zcl-nomp/) or build the image yourself.
+
+#### Pull from Dockerhub
+
+```
+$ docker pull rizkiwicaksono/docker-zcl-nomp
+$ docker tag rizkiwicaksono/docker-zcl-nomp btcp/z-nomp
+```
+
+### Build docker image
 
 1. Clone this repo
 ```
