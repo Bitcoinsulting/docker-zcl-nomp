@@ -1,5 +1,13 @@
+# docker-zcl-nomp
+This is a docker image to run complete [Zclassic mining pool](https://github.com/BTCP-community/z-nomp).
 
-**Building Docker**
+## Components included
+* ZClassic full node
+* Node JS, NPM
+* Redis
+* LevelDB
+
+## Building Docker
 
 1. Clone this repo
 ```
@@ -13,7 +21,7 @@ $ docker build -t btcp/z-nomp .
 ```
 
 
-# Running Z-NOMP docker
+## Running Z-NOMP docker
 
 Requirement:
 * Make sure you have a folder to hold zcl blockchain
@@ -21,13 +29,14 @@ Requirement:
 $ mkdir {absolute/path/to/zcl-blockchain/folder}
 ```
 
-**Running Docker**
+Running Docker
 
 ```
 $ docker run -v {absolute/path/to/zcl-blockchain/folder}:/home/zcluser/database -it -t btcp/z-nomp /bin/bash
+root@2b8bf0547d53:/home/zcluser# bash ./run_zcl_nomp.sh
 ```
 
-# Verify your ZCL node is running
+## Verify your ZCL node is running
 We can verify ZCL node by sending RPC command getinfo to ZCL node. If you get the following results, then your ZCL node is running.
 ```
 $ curl http://127.0.0.1:8232 --user zcluser:[RPCpassword] --data-binary '{"id": 0, "method": "getinfo", "params": []}'
@@ -36,7 +45,7 @@ $ curl http://127.0.0.1:8232 --user zcluser:[RPCpassword] --data-binary '{"id": 
 ```
 
 
-# Troubleshootings
+## Troubleshootings
 
 1. RPC call failed
 
