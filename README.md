@@ -59,6 +59,8 @@ This error caused by incorrect port was configured. Daemon port number in pool_c
 
 2. Invalid address
 
+![invalid address](https://user-images.githubusercontent.com/4344115/35867060-abdd60a0-0b0d-11e8-8a90-f8730d1991b3.png)
+
 ```
 2018-02-03 17:12:27 [Payments]	[zclassic] Daemon does not own pool address - payment processing can not be done with this daemon, {"isvalid":true,"address":"t1a4ZTJTeCwnE9saExJ765pqmncJaT8vacM","scriptPubKey":"76a914b1947522d1058216bebd58afd34ffa10e45bb83f88ac","ismine":false,"iswatchonly":false,"isscript":false}
 2018-02-03 17:12:27 [Website]	[zclassic] Could not dumpprivkey for zclassic {"code":-4,"message":"Private key for address t1a4ZTJTeCwnE9saExJ765pqmncJaT8vacM is not known"}
