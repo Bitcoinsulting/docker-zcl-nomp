@@ -43,6 +43,8 @@ $ cd /home/zcluser/z-nomp
 $ sudo -u zcluser npm start
 ```
 
+![running NOMP](https://user-images.githubusercontent.com/4344115/35884568-fc28a574-0b3f-11e8-84d6-2b4fe2422e68.png)
+
 
 ## Verify your ZCL node is running
 We can verify ZCL node by sending RPC command getinfo to ZCL node. If you get the following results, then your ZCL node is running.
