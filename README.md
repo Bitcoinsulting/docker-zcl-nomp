@@ -1,16 +1,3 @@
-# docker-zcl-nomp
-Running ZClassic NOMP in a Docker container
-
-# Building Docker image
-
-
-# Running Z-NOMP docker
-
-Requirement:
-* Make sure you have a folder to hold zcl blockchain
-```
-$ mkdir {absolute/path/to/zcl-blockchain/folder}
-```
 
 **Building Docker**
 
@@ -23,6 +10,15 @@ $ git clone git@github.com:rizkiwicaksono/docker-zcl-nomp.git
 ```
 $ cd docker-zcl-nomp/
 $ docker build -t btcp/z-nomp .
+```
+
+
+# Running Z-NOMP docker
+
+Requirement:
+* Make sure you have a folder to hold zcl blockchain
+```
+$ mkdir {absolute/path/to/zcl-blockchain/folder}
 ```
 
 **Running Docker**
