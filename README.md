@@ -49,7 +49,7 @@ $ curl http://127.0.0.1:8232 --user zcluser:[RPCpassword] --data-binary '{"id": 
 
 ## Troubleshootings
 
-1. RPC call failed
+1. RPC call connection refused
 
 ![invalid port](https://user-images.githubusercontent.com/4344115/35867293-47fee076-0b0e-11e8-854a-2156b57175d5.png)
 ```
