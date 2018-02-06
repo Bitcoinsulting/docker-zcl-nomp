@@ -73,22 +73,15 @@ $ /home/zcluser/zclassic/src/zcash-cli -conf=/home/zcluser/.zclassic/zclassic.co
 
 3. Node not connected
 
-```
-{"code":-9,"message":"Zcash is not connected!"}
-```
-This error caused by your zclassic node is not connected to any peers. Most of the case, it just need more time to try all nodes IP addresses in zclassic.conf file.
+![zcash not connected](https://user-images.githubusercontent.com/4344115/35866736-ce1c8412-0b0c-11e8-9ba3-c8cc22846842.png)
+
+This error caused by your zclassic node is not yet connected to any peers. Most of the case, it just need more time to try all nodes IP addresses in zclassic.conf file.
 
 4. Downloading blockchain
 
-```
-2018-02-06 04:33:56 [Pool]	[zclassic] (Thread 1) Share processing setup with redis (127.0.0.1:6379)
-2018-02-06 04:33:57 [Pool]	[zclassic] (Thread 1) Daemon is still syncing with network (download blockchain) - server will be started once synced
-2018-02-06 04:33:57 [Pool]	[zclassic] (Thread 1) Downloaded 0.24% of blockchain from 4 peers
-2018-02-06 04:34:02 [Pool]	[zclassic] (Thread 1) Downloaded 0.28% of blockchain from 4 peers
-2018-02-06 04:34:07 [Pool]	[zclassic] (Thread 1) Downloaded 0.30% of blockchain from 4 peers
-```
+![syncing blockchain](https://user-images.githubusercontent.com/4344115/35866858-1979beca-0b0d-11e8-859a-8dd41a3ed5a1.png)
 
-This is not an error, you have to wait until your zcl node has download full blockchain
+This is not an error, you have to wait until your zcl node has downloaded full blockchain before pool can be started.
 
 
 
