@@ -8,6 +8,7 @@ then
 	# Update RPC username and password
 	RPCUSER=zcluser
 	RPCPASS=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
+	sed -ie 's/rpcport=/#rpcport=/' /home/zcluser/.zclassic/zclassic.conf
 	sed -ie s/rpcuser=change-this/rpcuser=${RPCUSER}/ /home/zcluser/.zclassic/zclassic.conf
 	sed -ie s/rpcpassword=change-this/rpcpassword=${RPCPASS}/ /home/zcluser/.zclassic/zclassic.conf
 fi

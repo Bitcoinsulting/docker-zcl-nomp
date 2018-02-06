@@ -33,7 +33,7 @@
         "maxBlocksPerPayment": 1000,
         "daemon": {
             "host": "127.0.0.1",
-            "port": 8232,
+            "port": 8023,
             "user": "zcluser",
             "password": "RPCPASS"
         }
@@ -89,7 +89,7 @@
     "daemons": [
         {
             "host": "127.0.0.1",
-            "port": 8232,
+            "port": 8023,
             "user": "zcluser",
             "password": "RPCPASS"
         }
