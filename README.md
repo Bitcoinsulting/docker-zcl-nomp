@@ -1,8 +1,44 @@
 # docker-zcl-nomp
-Running ZClassic NOMP in a Docker container
+This is a docker image to run complete [Zclassic mining pool](https://github.com/BTCP-community/z-nomp).
+
+## Components included
+* ZClassic full node
+* Node JS, NPM
+* Redis
+* LevelDB
+
+## Building Docker
+
+1. Clone this repo
+```
+$ git clone git@github.com:rizkiwicaksono/docker-zcl-nomp.git
+```
+
+2. Build from Dockerfile
+```
+$ cd docker-zcl-nomp/
+$ docker build -t btcp/z-nomp .
+```
 
 
-# Verify your ZCL node is running
+## Running Z-NOMP docker
+
+Requirement:
+* Make sure you have a folder to hold zcl blockchain
+```
+$ mkdir {absolute/path/to/zcl-blockchain/folder}
+```
+
+Running Docker
+
+```
+$ docker run -v {absolute/path/to/zcl-blockchain/folder}:/home/zcluser/database -it -t btcp/z-nomp /bin/bash
+root@2b8bf0547d53:/home/zcluser# bash ./run_zcl_nomp.sh
+```
+
+![](https://user-images.githubusercontent.com/4344115/35842844-b5c31d48-0ab9-11e8-91c6-f289c404d5fc.png)
+
+## Verify your ZCL node is running
 We can verify ZCL node by sending RPC command getinfo to ZCL node. If you get the following results, then your ZCL node is running.
 ```
 $ curl http://127.0.0.1:8232 --user zcluser:[RPCpassword] --data-binary '{"id": 0, "method": "getinfo", "params": []}'
@@ -11,7 +47,7 @@ $ curl http://127.0.0.1:8232 --user zcluser:[RPCpassword] --data-binary '{"id": 
 ```
 
 
-# Troubleshootings
+## Troubleshootings
 
 1. RPC call failed
 
@@ -42,6 +78,17 @@ $ /home/zcluser/zclassic/src/zcash-cli -conf=/home/zcluser/.zclassic/zclassic.co
 ```
 This error caused by your zclassic node is not connected to any peers. Most of the case, it just need more time to try all nodes IP addresses in zclassic.conf file.
 
+4. Downloading blockchain
+
+```
+2018-02-06 04:33:56 [Pool]	[zclassic] (Thread 1) Share processing setup with redis (127.0.0.1:6379)
+2018-02-06 04:33:57 [Pool]	[zclassic] (Thread 1) Daemon is still syncing with network (download blockchain) - server will be started once synced
+2018-02-06 04:33:57 [Pool]	[zclassic] (Thread 1) Downloaded 0.24% of blockchain from 4 peers
+2018-02-06 04:34:02 [Pool]	[zclassic] (Thread 1) Downloaded 0.28% of blockchain from 4 peers
+2018-02-06 04:34:07 [Pool]	[zclassic] (Thread 1) Downloaded 0.30% of blockchain from 4 peers
+```
+
+This is not an error, you have to wait until your zcl node has download full blockchain
 
 
 
