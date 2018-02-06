@@ -7,7 +7,18 @@ This is a docker image to run complete [Zclassic mining pool](https://github.com
 * Redis
 * LevelDB
 
-## Building Docker
+## Getting Docker Image
+
+You can either pull from [Docker Hub](https://hub.docker.com/r/rwicaksono/docker-zcl-nomp/) or build the image yourself.
+
+#### Pull from Dockerhub
+
+```
+$ docker pull rwicaksono/docker-zcl-nomp
+$ docker tag rwicaksono/docker-zcl-nomp btcp/z-nomp
+```
+
+### Build docker image
 
 1. Clone this repo
 ```
@@ -36,7 +47,15 @@ $ docker run -v {absolute/path/to/zcl-blockchain/folder}:/home/zcluser/database 
 root@2b8bf0547d53:/home/zcluser# bash ./run_zcl_nomp.sh
 ```
 
-![](https://user-images.githubusercontent.com/4344115/35842844-b5c31d48-0ab9-11e8-91c6-f289c404d5fc.png)
+Re-Running NOMP
+After you stop NOMP, you can re-start it again with npm.
+```
+$ cd /home/zcluser/z-nomp
+$ sudo -u zcluser npm start
+```
+
+![running NOMP](https://user-images.githubusercontent.com/4344115/35884568-fc28a574-0b3f-11e8-84d6-2b4fe2422e68.png)
+
 
 ## Verify your ZCL node is running
 We can verify ZCL node by sending RPC command getinfo to ZCL node. If you get the following results, then your ZCL node is running.
@@ -49,15 +68,48 @@ $ curl http://127.0.0.1:8232 --user zcluser:[RPCpassword] --data-binary '{"id": 
 
 ## Troubleshootings
 
-1. RPC call failed
+1. RPC call connection refused
 
+![invalid port](https://user-images.githubusercontent.com/4344115/35867293-47fee076-0b0e-11e8-854a-2156b57175d5.png)
 ```
 2018-02-03 17:10:26 [Pool]	[zclassic] (Thread 2) Could not start pool, error with init batch RPC call: {"type":"offline","message":"connect ECONNREFUSED 127.0.0.1:8023"}
 ```
 
-This error caused by incorrect port was configured. Daemon port number in pool_configs/zclassic.json should match .zclassic/zclassic.conf.
+This error caused by incorrect RPC port was configured in pool_configs/zclassic.json. Find out the correct RPC port in your zclassic.conf file (begin with "rpcport=") then fix port number in pool_configs/zclassic.json under payment processing:
+
+```json
+    "paymentProcessing": {
+    "minConf": 10,
+        "enabled": true,
+        "paymentMode": "prop",
+        "_comment_paymentMode":"prop, pplnt",
+        "paymentInterval": 15,
+        "minimumPayment": 0,
+        "maxBlocksPerPayment": 1000,
+        "daemon": {
+            "host": "127.0.0.1",
+            "port": 8232,
+            "user": "zcluser",
+            "password": "EuStKJZe"
+        }
+    },
+```
+
+and also change port number under daemons section:
+```json
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 8232,
+            "user": "zcluser",
+            "password": "EuStKJZe"
+        }
+    ],
+```
 
 2. Invalid address
+
+![invalid address](https://user-images.githubusercontent.com/4344115/35867060-abdd60a0-0b0d-11e8-8a90-f8730d1991b3.png)
 
 ```
 2018-02-03 17:12:27 [Payments]	[zclassic] Daemon does not own pool address - payment processing can not be done with this daemon, {"isvalid":true,"address":"t1a4ZTJTeCwnE9saExJ765pqmncJaT8vacM","scriptPubKey":"76a914b1947522d1058216bebd58afd34ffa10e45bb83f88ac","ismine":false,"iswatchonly":false,"isscript":false}
@@ -73,22 +125,15 @@ $ /home/zcluser/zclassic/src/zcash-cli -conf=/home/zcluser/.zclassic/zclassic.co
 
 3. Node not connected
 
-```
-{"code":-9,"message":"Zcash is not connected!"}
-```
-This error caused by your zclassic node is not connected to any peers. Most of the case, it just need more time to try all nodes IP addresses in zclassic.conf file.
+![zcash not connected](https://user-images.githubusercontent.com/4344115/35866736-ce1c8412-0b0c-11e8-9ba3-c8cc22846842.png)
+
+This error caused by your zclassic node is not yet connected to any peers. Most of the case, it just need more time to try all nodes IP addresses in zclassic.conf file.
 
 4. Downloading blockchain
 
-```
-2018-02-06 04:33:56 [Pool]	[zclassic] (Thread 1) Share processing setup with redis (127.0.0.1:6379)
-2018-02-06 04:33:57 [Pool]	[zclassic] (Thread 1) Daemon is still syncing with network (download blockchain) - server will be started once synced
-2018-02-06 04:33:57 [Pool]	[zclassic] (Thread 1) Downloaded 0.24% of blockchain from 4 peers
-2018-02-06 04:34:02 [Pool]	[zclassic] (Thread 1) Downloaded 0.28% of blockchain from 4 peers
-2018-02-06 04:34:07 [Pool]	[zclassic] (Thread 1) Downloaded 0.30% of blockchain from 4 peers
-```
+![syncing blockchain](https://user-images.githubusercontent.com/4344115/35866858-1979beca-0b0d-11e8-859a-8dd41a3ed5a1.png)
 
-This is not an error, you have to wait until your zcl node has download full blockchain
+This is not an error, you have to wait until your zcl node has downloaded full blockchain before pool can be started.
 
 
 
