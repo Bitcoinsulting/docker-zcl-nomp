@@ -36,6 +36,8 @@ $ docker run -v {absolute/path/to/zcl-blockchain/folder}:/home/zcluser/database 
 root@2b8bf0547d53:/home/zcluser# bash ./run_zcl_nomp.sh
 ```
 
+![](https://user-images.githubusercontent.com/4344115/35842844-b5c31d48-0ab9-11e8-91c6-f289c404d5fc.png)
+
 ## Verify your ZCL node is running
 We can verify ZCL node by sending RPC command getinfo to ZCL node. If you get the following results, then your ZCL node is running.
 ```
